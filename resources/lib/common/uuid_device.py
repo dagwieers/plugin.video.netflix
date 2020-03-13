@@ -9,7 +9,7 @@
 """
 from __future__ import absolute_import, division, unicode_literals
 
-from .logging import debug
+from .logging import debug, error
 from .device_utils import get_system_platform
 
 try:  # Python 2
@@ -54,6 +54,7 @@ def _get_system_uuid():
         uuid_value = _get_android_uuid()
     elif system == 'linux':
         uuid_value = _get_linux_uuid()
+        error('LINUX UUID: {}', uuid_value)
     elif system == 'osx':
         # Due to OS restrictions on 'ios' and 'tvos' is not possible to use _get_macos_uuid()
         # See python limits in the wiki development page
